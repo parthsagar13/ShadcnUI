@@ -1,7 +1,6 @@
 'use client';
 
 import {Button} from '@/components/ui/button';
-import { signInWithOAuth } from '@/utils/auth-helpers/client';
 import { type Provider } from '@supabase/supabase-js';
 import { FcGoogle } from "react-icons/fc";
 import { useState } from 'react';
@@ -25,7 +24,7 @@ export default function OauthSignIn() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true); // Disable the button while the request is being handled
-    await signInWithOAuth(e);
+    // await signInWithOAuth(e);
     setIsSubmitting(false);
   };
 
