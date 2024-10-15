@@ -19,8 +19,6 @@ import { HiX } from 'react-icons/hi';
 import { HiBolt } from 'react-icons/hi2';
 import { HiOutlineArrowRightOnRectangle } from 'react-icons/hi2';
 import { getRedirectMethod } from '@/utils/auth-helpers/settings';
-import { SignOut } from '@/utils/auth-helpers/server';
-import { handleRequest } from '@/utils/auth-helpers/client';
 import { UserContext, UserDetailsContext } from '@/contexts/layout';
 
 export interface SidebarProps extends PropsWithChildren {
@@ -29,7 +27,6 @@ export interface SidebarProps extends PropsWithChildren {
 }
 
 function Sidebar(props: SidebarProps) {
-  const router = getRedirectMethod() === 'client' ? useRouter() : null;
   const { routes } = props;
 
   const user = useContext(UserContext);
@@ -104,7 +101,7 @@ function Sidebar(props: SidebarProps) {
                 </a>
                 <form
                   className="w-full"
-                  onSubmit={(e) => handleRequest(e, SignOut, router)}
+                  onSubmit={(e) => e}
                 >
                   <input type="hidden" name="pathName" value={usePathname() || ""} />
                   <Button
