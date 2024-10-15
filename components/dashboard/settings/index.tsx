@@ -7,7 +7,6 @@ import { Card } from '@/components/ui/card';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { createClient } from '@/utils/supabase/client';
 import { getURL, getStatusRedirect } from '@/utils/helpers';
 import Notifications from './components/notification-settings';
 import { Input } from '@/components/ui/input';
@@ -17,7 +16,6 @@ import { Input } from '@/components/ui/input';
 //   userDetails: { [x: string]: any } | null;
 // }
 
-const supabase = createClient();
 export default function Settings(props) {
   // Input States
   const [nameError, setNameError] = useState<{
@@ -47,12 +45,12 @@ export default function Settings(props) {
       )
     );
     e.preventDefault();
-    const { error } = await supabase.auth.updateUser(
-      { email: newEmail },
-      {
-        emailRedirectTo: callbackUrl
-      }
-    );
+    // const { error } = await supabase.auth.updateUser(
+    //   { email: newEmail },
+    //   {
+    //     emailRedirectTo: callbackUrl
+    //   }
+    // );
     router.push('/dashboard/settings');
     setIsSubmitting(false);
   };
@@ -68,17 +66,17 @@ export default function Settings(props) {
     // Get form data
     const fullName = e.currentTarget.fullName.value.trim();
 
-    const { error } = await supabase
-      .from('users')
-      .update({ full_name: fullName })
-      .eq('id', props.user?.id);
-    if (error) {
-      console.log(error);
-    }
-    e.preventDefault();
-    supabase.auth.updateUser({
-      data: { full_name: fullName }
-    });
+    // const { error } = await supabase
+    //   .from('users')
+    //   .update({ full_name: fullName })
+    //   .eq('id', props.user?.id);
+    // if (error) {
+    //   console.log(error);
+    // }
+    // e.preventDefault();
+    // supabase.auth.updateUser({
+    //   data: { full_name: fullName }
+    // });
     router.push('/dashboard/settings');
     setIsSubmitting(false);
   };
