@@ -8,11 +8,9 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { OpenContext, UserContext } from '@/contexts/layout';
-import { handleRequest } from '@/utils/auth-helpers/client';
-import { SignOut } from '@/utils/auth-helpers/server';
 import { getRedirectMethod } from '@/utils/auth-helpers/settings';
 import { useTheme } from 'next-themes';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import React, { useContext } from 'react';
 import { useState, useEffect } from 'react';
 import { FiAlignJustify } from 'react-icons/fi';
@@ -28,7 +26,6 @@ export default function HeaderLinks(props: { [x: string]: any }) {
   const user = useContext(UserContext);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const router = getRedirectMethod() === 'client' ? useRouter() : null;
   const onOpen = () => {
     setOpen(false);
   };
@@ -95,7 +92,7 @@ export default function HeaderLinks(props: { [x: string]: any }) {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <form onSubmit={(e) => handleRequest(e, SignOut, router)}>
+      <form onSubmit={(e) => console.log(e)}>
         <input type="hidden" name="pathName" value={usePathname() || ""} />
         <Button
           type="submit"

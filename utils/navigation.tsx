@@ -1,6 +1,6 @@
 import { IRoute } from '@/types/types'
 // NextJS Requirement
-export const isWindowAvailable = () => typeof window !== 'undefined'
+// export const isWindowAvailable = () => typeof window !== 'undefined'
 
 export const findCurrentRoute = (
   routes: IRoute[],

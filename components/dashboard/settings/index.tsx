@@ -5,7 +5,6 @@ import DashboardLayout from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { getURL, getStatusRedirect } from '@/utils/helpers';
 import Notifications from './components/notification-settings';
@@ -24,7 +23,6 @@ export default function Settings(props) {
   }>();
   console.log(props.user);
   console.log(props.userDetails);
-  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmitEmail = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -51,7 +49,7 @@ export default function Settings(props) {
     //     emailRedirectTo: callbackUrl
     //   }
     // );
-    router.push('/dashboard/settings');
+    // router.push('/dashboard/settings');
     setIsSubmitting(false);
   };
 
@@ -77,7 +75,7 @@ export default function Settings(props) {
     // supabase.auth.updateUser({
     //   data: { full_name: fullName }
     // });
-    router.push('/dashboard/settings');
+    // router.push('/dashboard/settings');
     setIsSubmitting(false);
   };
 

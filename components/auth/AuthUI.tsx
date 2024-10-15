@@ -44,7 +44,7 @@ export default function AuthUI(props: any) {
       {props.viewProp === 'password_signin' && (
         <PasswordSignIn
           allowEmail={props.allowEmail}
-          redirectMethod={props.redirectMethod}
+          // redirectMethod={props.redirectMethod}
         />
       )}
       {props.viewProp === 'email_signin' && (
