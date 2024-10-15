@@ -1,7 +1,6 @@
 import DefaultAuth from '@/components/auth';
 import AuthUI from '@/components/auth/AuthUI';
 import { redirect } from 'next/navigation';
-import { createClient } from '@/utils/supabase/server';
 import { cookies } from 'next/headers';
 import {
   getAuthTypes,
@@ -34,25 +33,14 @@ export default async function SignIn({
     return redirect(`/dashboard/signin/${viewProp}`);
   }
 
-  // Check if the user is already logged in and redirect to the account page if so
-  const supabase = createClient();
 
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
-
-  if (user && viewProp !== 'update_password') {
-    return redirect('/dashboard/main');
-  } else if (!user && viewProp === 'update_password') {
-    return redirect('/dashboard/signin');
-  }
 
   return (
     <DefaultAuth viewProp={viewProp}>
       <div>
         <AuthUI
           viewProp={viewProp}
-          user={user}
+          user={null}
           allowPassword={allowPassword}
           allowEmail={allowEmail}
           redirectMethod={redirectMethod}
