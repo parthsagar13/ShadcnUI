@@ -10,6 +10,7 @@ import {
 import { OpenContext, UserContext } from '@/contexts/layout';
 import { getRedirectMethod } from '@/utils/auth-helpers/settings';
 import { useTheme } from 'next-themes';
+import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation';
 import React, { useContext } from 'react';
 import { useState, useEffect } from 'react';
@@ -26,6 +27,8 @@ export default function HeaderLinks(props: { [x: string]: any }) {
   const user = useContext(UserContext);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const router = useRouter()
+
   const onOpen = () => {
     setOpen(false);
   };
@@ -92,16 +95,14 @@ export default function HeaderLinks(props: { [x: string]: any }) {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <form onSubmit={(e) => console.log(e)}>
-        <input type="hidden" name="pathName" value={usePathname() || ""} />
         <Button
           type="submit"
           variant="outline"
+          onClick={() => router?.push('/dashboard/signin/signup')}
           className="flex h-9 min-w-9 cursor-pointer rounded-full border-zinc-200 p-0 text-xl text-zinc-950 dark:border-zinc-800 dark:text-white md:min-h-10 md:min-w-10"
         >
           <HiOutlineArrowRightOnRectangle className="h-4 w-4 stroke-2 text-zinc-950 dark:text-white" />
         </Button>
-      </form>
       <a className="w-full" href="/dashboard/settings">
         <Avatar className="h-9 min-w-9 md:min-h-10 md:min-w-10">
           <AvatarImage src={"https://lh3.googleusercontent.com/a/ACg8ocLuIPK0haAiZq9M6sq6uKLQjyMqIt6olNeHTvPRYUctu8fhx9vh=s96-c"} />
